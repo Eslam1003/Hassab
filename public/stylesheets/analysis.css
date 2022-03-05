@@ -6,11 +6,7 @@
   font-family: 'Cairo', sans-serif;
   font-family: 'Tajawal', sans-serif;
 }
-.card {
-  width: 50% !important;
-  margin: 20px auto !important;
-  background-color: #eee !important;
-}
+
 h5 {
   padding: 10px !important;
   text-align: center !important;
@@ -21,6 +17,11 @@ h5 {
   flex-direction: column !important;
   align-items: flex-end !important;
 }
-p {
-  width: fit-content !important;
+
+.cont {
+  display: flex;
+  justify-content: space-evenly;
+}
+.center {
+  text-align: center !important;
 }

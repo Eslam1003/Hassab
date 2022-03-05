@@ -1,33 +1,28 @@
 const { format } = require('date-fns');
-
 const Chimist = require('../models/chimist');
 const Visit = require('./../models/visit');
+let chimistName = [
+  'علاء عبد النعيم',
+  'عمر يوسف',
+  'السيد احمد',
+  'السيد عطية',
+  'محمود السيد',
+  'محمد يوسف',
+  'إبراهيم أحمد',
+  'بيتر وليم',
+  'مصطفي فوزي',
+  'كيرلس جاب الله',
+  'فادي صبري',
+  'عبده محمود',
+  'نجلاء',
+  'نسمة',
+  '-_-',
+];
+let spred = [];
+let notmatch = [];
 
-let alaa = [];
-let omar = [];
-let elsayedatya = [];
-let elsayedAhmed = [];
-let mahmoud = [];
-let ibrahem = [];
-let mohamed = [];
-let petr = [];
-let mostafa = [];
-let fadi = [];
-let kero = [];
-let abdo = [];
-let nglaa = [];
-let nesma = [];
-let other = [];
-let listOfChimist = {};
-var agmie = [];
-let areaone = [];
-let areatwo = [];
-let areathree = [];
-let areafour = [];
-let swaps = [];
-let del = 0;
-let incall = 0;
 // serach method
+let dateNow = format(new Date(), 'yyyy-MM-dd');
 let search = (req, res) => {
   let dateNow = format(new Date(), 'yyyy-MM-dd');
   let query = { date: `${dateNow}` };
@@ -56,102 +51,11 @@ let search = (req, res) => {
     .sort(sort)
     .toArray((err, data) => {
       if (err) throw err;
-      alaa = data.filter((e) => {
-        return e.chimist === 'علاء عبد النعيم';
-      });
-      ibrahem = data.filter((e) => {
-        return e.chimist === 'إبراهيم أحمد';
-      });
-      elsayedAhmed = data.filter((e) => {
-        return e.chimist === 'السيد احمد';
-      });
-      petr = data.filter((e) => {
-        return e.chimist === 'بيتر وليم';
-      });
-      abdo = data.filter((e) => {
-        return e.chimist === 'عبده محمود';
-      });
-      kero = data.filter((e) => {
-        return e.chimist === 'كيرلس جاب الله';
-      });
-      elsayedatya = data.filter((e) => {
-        return e.chimist === 'السيد عطية';
-      });
-      mahmoud = data.filter((e) => {
-        return e.chimist === 'محمود السيد';
-      });
-      nglaa = data.filter((e) => {
-        return e.chimist === 'نجلاء';
-      });
-      nesma = data.filter((e) => {
-        return e.chimist === 'نسمة';
-      });
-      omar = data.filter((e) => {
-        return e.chimist === 'عمر يوسف';
-      });
-      mostafa = data.filter((e) => {
-        return e.chimist === 'مصطفي فوزي';
-      });
-      mohamed = data.filter((e) => {
-        return e.chimist === 'محمد يوسف';
-      });
-      fadi = data.filter((e) => {
-        return e.chimist === 'فادي صبري';
-      });
-      other = data.filter((e) => {
-        return e.chimist === '-_-';
-      });
-      listOfChimist = {
-        alaa: alaa,
-        omar: omar,
-        elsayedatya: elsayedatya,
-        elsayedAhmed: elsayedAhmed,
-        mahmoud: mahmoud,
-        mohamed: mohamed,
-        ibrahem: ibrahem,
-        petr: petr,
-        mostafa: mostafa,
-        fadi: fadi,
-        kero: kero,
-        abdo: abdo,
-        nglaa: nglaa,
-        nesma: nesma,
-        other: other,
-      };
-      agmie.length = 0;
-      areaone.length = 0;
-      areatwo.length = 0;
-      areathree.length = 0;
-      areafour.length = 0;
-      swaps.length = 0;
-      Object.keys(listOfChimist).forEach((e) => {
-        if (listOfChimist[e][0]) {
-          if (listOfChimist[e][0].aria === '0') {
-            agmie.push(listOfChimist[e]);
-          } else if (listOfChimist[e][0].aria === '1') {
-            areaone.push(listOfChimist[e]);
-          } else if (listOfChimist[e][0].aria === '2') {
-            areatwo.push(listOfChimist[e]);
-          } else if (listOfChimist[e][0].aria === '3') {
-            areathree.push(listOfChimist[e]);
-          } else if (listOfChimist[e][0].aria === '4') {
-            areafour.push(listOfChimist[e]);
-          } else if (listOfChimist[e][0].aria === '5') {
-            swaps.push(listOfChimist[e]);
-          }
-        }
-      });
+      filterByChimist(data);
 
       res.render('index', {
         visits: data,
-        agmie: agmie,
-        areaone: areaone,
-        areatwo: areatwo,
-        areathree: areathree,
-        areafour: areafour,
-        swaps: swaps,
-        del: del,
-        incall: incall,
+        spred: spred,
       });
     });
 };
@@ -165,10 +69,11 @@ let visitsPrint = async (req, res) => {
       res.render('visits/print', {
         title: 'Home visit visit page',
         visit: data,
+        dateNow: dateNow,
       });
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      res.redirect('error', { error: error });
     });
 };
 // end
@@ -196,10 +101,11 @@ let visitupdate = async (req, res) => {
       cost: req.body.cost,
       stat: req.body.stat,
       aria: req.body.aria,
+      num: req.body.num,
     }
   );
   let visit = await Visit.findById({ _id: id });
-  res.render('visits/print', { visit: visit });
+  res.render('visits/print', { visit: visit, dateNow: dateNow });
 };
 // end
 //new visit
@@ -238,6 +144,7 @@ let visitEdit = async (req, res) => {
   let visit = await Visit.findById(id);
   res.render('visits/edit', { visit: visit });
 };
+
 let creatnew = async (req, res) => {
   let id = req.params.id;
   let visit = await Visit.findById(id);
@@ -265,11 +172,12 @@ let visitSave = async (req, res) => {
     cost: req.body.cost,
     stat: req.body.stat,
     aria: req.body.aria,
+    num: req.body.num,
   });
   try {
     await visit.save();
   } catch (error) {
-    console.log(error);
+    res.redirect('error', { error: error });
   }
   res.redirect(`visits/print/${visit._id}`);
 };
@@ -284,6 +192,7 @@ let deleteVisit = (req, res) => {
 };
 
 let d = 0;
+let num = 0;
 let doneVisit = 0;
 let total = 0;
 let agami = 0;
@@ -307,6 +216,7 @@ let analysis = (req, res) => {
     swap: swap,
     delet: delet,
     total: total,
+    num: num,
   });
 };
 let analysisSearch = (req, res) => {
@@ -354,8 +264,13 @@ let analysisSearch = (req, res) => {
           default:
             break;
         }
+        if (e.num) {
+          num = num + e.num;
+        }
       });
+
       total = data.length;
+
       res.render('visits/analysis', {
         visit: data,
         total: total,
@@ -369,8 +284,10 @@ let analysisSearch = (req, res) => {
         swap: swap,
         delet: delet,
         total: total,
+        num: num,
       });
       d = 0;
+      num = 0;
       doneVisit = 0;
       total = 0;
       agami = 0;
@@ -382,6 +299,26 @@ let analysisSearch = (req, res) => {
       delet = [];
     });
 };
+
+function filterByChimist(data) {
+  spred = [];
+  notmatch = [];
+  chimistName.forEach((chimist) => {
+    data.map((visits) => {
+      if (chimist === visits.chimist) {
+        spred.push(visits);
+      }
+    });
+  });
+  data.map((visits) => {
+    if (!chimistName.includes(visits.chimist)) {
+      notmatch.push(visits);
+    }
+  });
+  spred = spred.concat(notmatch);
+
+  return spred;
+}
 
 module.exports = {
   search,

@@ -16,9 +16,22 @@
       <h1 class="mb-4">New Visit</h1>
       <form action="/" method="post">
         <%-include("_form_feild") %>
+
         <a href="/" class="btn btn-secondary mt-4">Back</a>
         <button type="submit" class="btn btn-success mt-4">Save</button>
       </form>
     </div>
+    <script>
+      let test = document.getElementById('test');
+      let tests = document.getElementById('tests');
+      document.execCommand('defaultParagraphSeparator', false, 'br');
+
+      test.onblur = () => {
+        tests.innerHTML = test.innerHTML;
+      };
+
+      console.log(test);
+      console.log(tests.value);
+    </script>
   </body>
 </html>

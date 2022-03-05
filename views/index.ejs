@@ -60,11 +60,12 @@
       <% } else { %>
       <div class="logo-cont">
         <div class="logo">
-          <img src="/public/images/Logo.png" alt="" />
-          <p>testing Lorem ipsum dolor</p>
+          <img src="/images/Logo.png" alt="" />
+          <img src="" alt="quality logo" />
         </div>
+        <p class="d">سياسات و اجراءات</p>
       </div>
-      <h4 class="v-heading">زيارات <%= visits[0].date %></h4>
+      <h4 class="v-heading">مجمعه زيارات يوم :<%= visits[0].date %></h4>
       <div class="card-body hed">
         <h4 class="card-title">اسم العميل</h4>
         <h4 class="card-title">المنطقه</h4>
@@ -75,10 +76,11 @@
         <h4 class="card-title">اجمالي التكلفه</h4>
       </div>
 
-      <% agmie.forEach((v,i) => { %> <% v.forEach(visit => { %>
+      <% } %> <% spred.forEach((visit,i) => { %>
       <div class="card container-xl <%= visit.stat %>">
         <a href="/visits/print/<%= visit._id %> " class="edit">
           <div class="card-body">
+            <p class="count"><%= i+1 %></p>
             <h6 class="card-title"><%= visit.name %></h6>
             <p class="card-title"><%= visit.ragion %></p>
             <p class="card-title"><%= visit.phoneNum1 %></p>
@@ -92,98 +94,9 @@
           </div>
         </a>
       </div>
-      <% }) %> <% }) %> <% areaone.forEach((v,i) => { %> <% v.forEach(visit => {
-      %>
-      <div class="card container-xl <%= visit.stat %>">
-        <a href="/visits/print/<%= visit._id %> " class="edit">
-          <div class="card-body">
-            <h6 class="card-title"><%= visit.name %></h6>
-            <p class="card-title"><%= visit.ragion %></p>
-            <p class="card-title"><%= visit.phoneNum1 %></p>
-            <% let time= '' %> <% if (visit.time.length===13) { %> <%
-            time=visit.time.slice(2) %> <% } else { %> <%
-            time=visit.time.slice(-9) %> <% } %>
-            <p class="card-title"><%= time %></p>
-            <p class="card-title"><%= visit.date %></p>
-            <p class="card-title"><%= visit.chimist %></p>
-            <p class="card-title"><%= visit.cost %></p>
-          </div>
-        </a>
-      </div>
-      <% }) %> <% }) %> <% areatwo.forEach((v,i) => { %> <% v.forEach(visit => {
-      %>
-      <div class="card container-xl <%= visit.stat %>">
-        <a href="/visits/print/<%= visit._id %> " class="edit">
-          <div class="card-body">
-            <h6 class="card-title"><%= visit.name %></h6>
-            <p class="card-title"><%= visit.ragion %></p>
-            <p class="card-title"><%= visit.phoneNum1 %></p>
-            <% let time= '' %> <% if (visit.time.length===13) { %> <%
-            time=visit.time.slice(2) %> <% } else { %> <%
-            time=visit.time.slice(-9) %> <% } %>
-            <p class="card-title"><%= time %></p>
-            <p class="card-title"><%= visit.date %></p>
-            <p class="card-title"><%= visit.chimist %></p>
-            <p class="card-title"><%= visit.cost %></p>
-          </div>
-        </a>
-      </div>
-      <% }) %> <% }) %> <% areathree.forEach((v,i) => { %> <% v.forEach(visit =>
-      { %>
-      <div class="card container-xl <%= visit.stat %>">
-        <a href="/visits/print/<%= visit._id %> " class="edit">
-          <div class="card-body">
-            <h6 class="card-title"><%= visit.name %></h6>
-            <p class="card-title"><%= visit.ragion %></p>
-            <p class="card-title"><%= visit.phoneNum1 %></p>
-            <% let time= '' %> <% if (visit.time.length===13) { %> <%
-            time=visit.time.slice(2) %> <% } else { %> <%
-            time=visit.time.slice(-9) %> <% } %>
-            <p class="card-title"><%= time %></p>
-            <p class="card-title"><%= visit.date %></p>
-            <p class="card-title"><%= visit.chimist %></p>
-            <p class="card-title"><%= visit.cost %></p>
-          </div>
-        </a>
-      </div>
-      <% }) %> <% }) %> <% areafour.forEach((v,i) => { %> <% v.forEach(visit =>
-      { %>
-      <div class="card container-xl <%= visit.stat %>">
-        <a href="/visits/print/<%= visit._id %> " class="edit">
-          <div class="card-body">
-            <h6 class="card-title"><%= visit.name %></h6>
-            <p class="card-title"><%= visit.ragion %></p>
-            <p class="card-title"><%= visit.phoneNum1 %></p>
-            <% let time= '' %> <% if (visit.time.length===13) { %> <%
-            time=visit.time.slice(2) %> <% } else { %> <%
-            time=visit.time.slice(-9) %> <% } %>
-            <p class="card-title"><%= time %></p>
-            <p class="card-title"><%= visit.date %></p>
-            <p class="card-title"><%= visit.chimist %></p>
-            <p class="card-title"><%= visit.cost %></p>
-          </div>
-        </a>
-      </div>
-      <% }) %> <% }) %> <% swaps.forEach((v,i) => { %> <% v.forEach(visit => {
-      %>
-      <div class="card container-xl <%= visit.stat %>">
-        <a href="/visits/print/<%= visit._id %> " class="edit">
-          <div class="card-body">
-            <h6 class="card-title"><%= visit.name %></h6>
-            <p class="card-title"><%= visit.ragion %></p>
-            <p class="card-title"><%= visit.phoneNum1 %></p>
-            <% let time= '' %> <% if (visit.time.length===13) { %> <%
-            time=visit.time.slice(2) %> <% } else { %> <%
-            time=visit.time.slice(-9) %> <% } %>
-            <p class="card-title"><%= time %></p>
-            <p class="card-title"><%= visit.date %></p>
-            <p class="card-title"><%= visit.chimist %></p>
-            <p class="card-title"><%= visit.cost %></p>
-          </div>
-        </a>
-      </div>
-      <% }) %> <% }) %> <% } %>
+      <% }) %>
     </article>
+
     <div class="anlaysis">
       <div class="container">
         <p style="display: inline"><%= visits.length %></p>

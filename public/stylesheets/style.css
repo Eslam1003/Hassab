@@ -14,9 +14,20 @@ h4 {
   font-size: 20px !important;
 }
 .logo {
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0px auto;
+}
+.logo-cont {
+  position: relative;
+}
+.d {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .hide {
   display: none;
@@ -60,12 +71,9 @@ article {
 }
 .card-body {
   display: grid !important;
-  /* grid-template-columns: repeat(7, minmax(auto, 1fr)) !important; */
   grid-template-columns: 300px 1fr 1fr 1fr 1fr 1fr 1fr !important;
-  align-items: center !important;
-  justify-items: center !important;
   gap: 7px !important;
-  padding: 5px !important;
+  padding: 5px 10px 5px 0px !important;
   position: relative;
 }
 .card:hover {
@@ -110,9 +118,6 @@ article {
 .pending {
   background-color: aquamarine !important;
 }
-.none {
-  display: none !important;
-}
 
 @media print {
   .header {
@@ -127,8 +132,6 @@ article {
   }
   .card-body {
     grid-template-columns: 300px 1fr 1fr 1fr 1fr 1fr 1fr !important;
-    align-items: center !important;
-    justify-items: center !important;
     gap: 7px !important;
     padding: 5px !important;
   }
@@ -140,4 +143,8 @@ article {
     size: auto;
     margin: 0;
   }
+}
+#test {
+  min-height: 150px;
+  font-size: 18px;
 }

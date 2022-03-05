@@ -97,15 +97,19 @@
 <!-- التحاليل -->
 <div class="input-group mb-3">
   <span class="input-group-text mb-3">اسماء التحاليل</span>
+  <div id="test" class="form-control mb-3" contenteditable="true">
+    <%- visit.tests %>
+  </div>
   <textarea
+    style="display: none"
     class="form-control mb-3"
     aria-label="With textarea"
     name="tests"
     id="tests"
     required
   >
-<%= visit.tests %></textarea
-  >
+  <%= visit.tests %>
+  </textarea>
 </div>
 
 <!-- الوقت  -->
@@ -183,6 +187,15 @@
     required
     value="<%= visit.cost %>"
   />
+  <span class="input-group-text">عدد الافراد الاضافين</span>
+  <input
+    class="form-control"
+    placeholder="عدد الافراد الاضافين"
+    name="num"
+    id="num"
+    type="number"
+    value="<%= visit.num %>"
+  />
 </div>
 <div class="form-check form-check-inline">
   <input
@@ -216,17 +229,7 @@
   />
   <label class="form-check-label" for="inlineRadio3">Normal</label>
 </div>
-<!-- <div class="form-check form-check-inline">
-  <input
-    class="form-check-input"
-    type="radio"
-    name="stat"
-    id="inlineRadio4"
-    value="none"
-    required
-  />
-  <label class="form-check-label" for="inlineRadio4">Dleat</label>
-</div> -->
+
 <div class="form-check form-check-inline">
   <input
     class="form-check-input"

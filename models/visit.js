@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const visitSchema = new mongoose.Schema(
   {
     name: {
@@ -73,7 +72,11 @@ const visitSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    num: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );
+
 module.exports = mongoose.model('Visit', visitSchema);

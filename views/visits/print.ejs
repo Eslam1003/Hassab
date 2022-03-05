@@ -40,7 +40,7 @@
       </div>
       <div class="visit-row">
         <h6>التحاليل</h6>
-        <p><%= visit.tests %></p>
+        <p><%- visit.tests %></p>
       </div>
       <div class="visit-row">
         <h6>توقيت الزياره</h6>
@@ -72,12 +72,22 @@
         <p><%= visit.cost %></p>
       </div>
     </div>
-    <div class="buuton">
-      <a href="/" class="btn btn-success">Home</a>
-      <a href="/visits/edit/<%= visit.id %> " class="btn btn-success">edit</a>
-      <a href="/visits/newvisit/<%= visit.id %> " class="btn btn-success">New Visit</a>
-      <a class="btn btn-danger delet" data-doc="<%= visit.id %>">Delete Visit</a>
-    </div>
+    <%let now= dateNow %> 
+    <%let visitDate = visit.date %> 
+     
+      <% if (now <= visitDate) { %>
+        <div class="buuton">
+          <a href="/" class="btn btn-success">Home</a>
+          <a href="/visits/edit/<%= visit.id %> " class="btn btn-success">edit</a>
+          <a href="/visits/newvisit/<%= visit.id %> " class="btn btn-success">New Visit</a>
+          <a class="btn btn-danger delet" data-doc="<%= visit.id %>">Delete Visit</a>
+        </div>
+        <% } else { %>
+           <div class="buuton">
+             <a href="/" class="btn btn-success">Home</a>
+             <a href="/visits/newvisit/<%= visit.id %> " class="btn btn-success">New Visit</a>
+           </div>
+      <% } %>
   </body>
   <script>
     let delet =document.querySelector('a.delet')
