@@ -2,11 +2,11 @@ const { format } = require('date-fns');
 const Chimist = require('../models/chimist');
 const Visit = require('./../models/visit');
 let chimistName = [
-  'علاء عبد النعيم',
   'عمر يوسف',
   'السيد احمد',
   'السيد عطية',
   'محمود السيد',
+  'علاء عبد النعيم',
   'محمد يوسف',
   'إبراهيم أحمد',
   'بيتر وليم',
@@ -18,6 +18,7 @@ let chimistName = [
   'نسمة',
   '-_-',
 ];
+let sortchimistbyarea = [];
 let spred = [];
 let notmatch = [];
 
@@ -51,6 +52,7 @@ let search = (req, res) => {
     .sort(sort)
     .toArray((err, data) => {
       if (err) throw err;
+      filterByErea(data);
       filterByChimist(data);
 
       res.render('index', {
@@ -116,15 +118,15 @@ let newVisit = (req, res, next) => {
 // chimist
 
 let chimistNote = async (req, res, next) => {
-  let chimist = await Chimist.findById({ _id: '6200e8b1761c995598162413' });
-  res.render('visits/chimist', { chimist: chimist });
+  let chimist = await Chimist.findById({ _id: '6225dba767aeee2062f0d706' });
+  res.render('visits/chimist', { chimist: chimist.chimist });
 };
 // end
 //  chimist save
 
 let chimistsave = async (req, res) => {
   await Chimist.findByIdAndUpdate(
-    { _id: '6200e8b1761c995598162413' },
+    { _id: '6225dba767aeee2062f0d706' },
     {
       sa: req.body.sa,
       su: req.body.su,
@@ -303,7 +305,7 @@ let analysisSearch = (req, res) => {
 function filterByChimist(data) {
   spred = [];
   notmatch = [];
-  chimistName.forEach((chimist) => {
+  sortchimistbyarea.forEach((chimist) => {
     data.map((visits) => {
       if (chimist === visits.chimist) {
         spred.push(visits);
@@ -311,7 +313,7 @@ function filterByChimist(data) {
     });
   });
   data.map((visits) => {
-    if (!chimistName.includes(visits.chimist)) {
+    if (!sortchimistbyarea.includes(visits.chimist)) {
       notmatch.push(visits);
     }
   });
@@ -319,7 +321,21 @@ function filterByChimist(data) {
 
   return spred;
 }
-
+function filterByErea(data) {
+  sortchimistbyarea = [];
+  for (let j = 0; j <= 5; j++) {
+    chimistName.forEach((chimist) => {
+      for (let i = 0; i < data.length; i++) {
+        if (chimist === data[i].chimist) {
+          if (data[i].aria == j) {
+            sortchimistbyarea.push(chimist);
+          }
+          break;
+        }
+      }
+    });
+  }
+}
 module.exports = {
   search,
   visitsPrint,

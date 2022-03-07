@@ -3,10 +3,10 @@
   font-family: 'Cairo', sans-serif;
   font-family: 'Tajawal', sans-serif;
 }
-h1 {
-  text-align: center;
-}
-
-span {
-  width: 100px !important;
+.chimist {
+  background-color: white;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
