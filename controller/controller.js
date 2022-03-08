@@ -1,6 +1,7 @@
 const { format } = require('date-fns');
 const Chimist = require('../models/chimist');
 const Visit = require('./../models/visit');
+
 let chimistName = [
   'عمر يوسف',
   'السيد احمد',
@@ -52,6 +53,7 @@ let search = (req, res) => {
     .sort(sort)
     .toArray((err, data) => {
       if (err) throw err;
+
       filterByErea(data);
       filterByChimist(data);
 
@@ -125,20 +127,27 @@ let chimistNote = async (req, res, next) => {
 //  chimist save
 
 let chimistsave = async (req, res) => {
+  let newChimist = req.body.chimist;
+  let chimists = await Chimist.findById({ _id: '6225dba767aeee2062f0d706' });
+  let newList = [];
+  if (chimists.chimist.includes(newChimist)) {
+    let filtered = chimists.chimist.filter((chimist) => {
+      return chimist !== newChimist;
+    });
+    newList = [...filtered];
+  } else {
+    newList = [newChimist, ...chimists.chimist];
+  }
+  chimistName = [...newList];
+
   await Chimist.findByIdAndUpdate(
     { _id: '6225dba767aeee2062f0d706' },
     {
-      sa: req.body.sa,
-      su: req.body.su,
-      mo: req.body.mo,
-      tu: req.body.tu,
-      we: req.body.we,
-      th: req.body.th,
-      fr: req.body.fr,
+      chimist: newList,
     }
   );
 
-  res.redirect('/');
+  res.redirect('/visits/chimist');
 };
 // end
 let visitEdit = async (req, res) => {

@@ -22,13 +22,18 @@
   </head>
 
   <body class="body">
-    <div class="container chimist">
+    <div class="chimist">
+      <form action="/visits/chimist" method="post">
+        <input type="text" name="chimist" id="chimist" class="chimist-sit" />
+        <input type="submit" value="Set" class="btn btn-outline-info" />
+      </form>
       <ol>
         <% chimist.forEach(chimist => { %>
 
         <li><%= chimist %></li>
         <% }) %>
       </ol>
+      <a href="/" class="btn btn-outline-info">Back</a>
     </div>
   </body>
 </html>

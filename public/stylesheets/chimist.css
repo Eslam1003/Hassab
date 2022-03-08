@@ -4,9 +4,27 @@
   font-family: 'Tajawal', sans-serif;
 }
 .chimist {
+  padding: 15px;
   background-color: white;
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  height: 100vh;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+ol {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  padding: 0px !important;
+  margin: 0px;
+  width: 150px;
+  height: 80%;
+  margin-right: 20px;
+}
+li {
+  background-color: #eee;
+}
+form {
+  display: flex;
+  flex-direction: row-reverse;
 }

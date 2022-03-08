@@ -77,14 +77,14 @@
      
       <% if (now <= visitDate) { %>
         <div class="buuton">
-          <a href="/" class="btn btn-success">Home</a>
+          <a href="/?searchDate=<%= visit.date %>" class="btn btn-success">Home</a>
           <a href="/visits/edit/<%= visit.id %> " class="btn btn-success">edit</a>
           <a href="/visits/newvisit/<%= visit.id %> " class="btn btn-success">New Visit</a>
           <a class="btn btn-danger delet" data-doc="<%= visit.id %>">Delete Visit</a>
         </div>
         <% } else { %>
            <div class="buuton">
-             <a href="/" class="btn btn-success">Home</a>
+             <a href="/?searchDate=<%= visit.date %> " class="btn btn-success">Home</a>
              <a href="/visits/newvisit/<%= visit.id %> " class="btn btn-success">New Visit</a>
            </div>
       <% } %>
