@@ -15,7 +15,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet"> 
   </head>
   <body class="body">
-    <div class="container">
+    <div class="containe">
+      <div class="logo-cont ">
+          <div class="logo">
+            <img src="/images/Logo.png" alt="" />
+            <img src="" alt="quality logo" />
+          </div>
+          <p class="d">سياسات و اجراءات</p>
+          <h3>استماره زيارات منزليه</h3>
+        </div>
       
       <div class="visit-row">
         <h6>الاسم</h6>
@@ -50,10 +58,8 @@
         <h6>القيام بالزياره</h6>
         
 
-         <% let time= '' %> <% if (visit.time.length===13) { %> <%
-            time=visit.time.slice(2) %> <% } else { %> <%
-            time=visit.time.slice(-9) %> <% } %>
-        <p> <h5>الساعة</h5>   <%=   time %>  <h5>يوم</h5> <%= visit.date %></p>
+         
+        <p> <h5>يـــــــوم</h5> <%= visit.date %> <h5> الســـاعـــة</h5>   <%=   visit.time.substring(2) %>   </p>
       </div>
       <div class="visit-row">
         <h6>متلقي الزياره</h6>

@@ -3,21 +3,21 @@ const Chimist = require('../models/chimist');
 const Visit = require('./../models/visit');
 
 let chimistName = [
-  'عمر يوسف',
-  'السيد احمد',
-  'السيد عطية',
-  'محمود السيد',
-  'علاء عبد النعيم',
-  'محمد يوسف',
-  'إبراهيم أحمد',
-  'بيتر وليم',
-  'مصطفي فوزي',
-  'كيرلس جاب الله',
-  'فادي صبري',
-  'عبده محمود',
-  'نجلاء',
-  'نسمة',
-  '-_-',
+  // 'عمر يوسف',
+  // 'السيد احمد',
+  // 'السيد عطية',
+  // 'محمود السيد',
+  // 'علاء عبد النعيم',
+  // 'محمد يوسف',
+  // 'إبراهيم أحمد',
+  // 'بيتر وليم',
+  // 'مصطفي فوزي',
+  // 'كيرلس جاب الله',
+  // 'فادي صبري',
+  // 'عبده محمود',
+  // 'نجلاء',
+  // 'نسمة',
+  // '-_-',
 ];
 let sortchimistbyarea = [];
 let spred = [];
@@ -114,7 +114,7 @@ let visitupdate = async (req, res) => {
 // end
 //new visit
 let newVisit = (req, res, next) => {
-  res.render('visits/new', { visit: new Visit() });
+  res.render('visits/new', { visit: new Visit(), chimistName: chimistName });
 };
 //end
 // chimist
@@ -153,13 +153,13 @@ let chimistsave = async (req, res) => {
 let visitEdit = async (req, res) => {
   let id = req.params.id;
   let visit = await Visit.findById(id);
-  res.render('visits/edit', { visit: visit });
+  res.render('visits/edit', { visit: visit, chimistName: chimistName });
 };
 
 let creatnew = async (req, res) => {
   let id = req.params.id;
   let visit = await Visit.findById(id);
-  res.render('visits/newvisit', { visit: visit });
+  res.render('visits/newvisit', { visit: visit, chimistName: chimistName });
 };
 
 //save the new visit to the db

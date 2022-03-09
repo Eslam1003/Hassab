@@ -84,10 +84,7 @@
             <h6 class="card-title"><%= visit.name %></h6>
             <p class="card-title"><%= visit.ragion %></p>
             <p class="card-title"><%= visit.phoneNum1 %></p>
-            <% let time= '' %> <% if (visit.time.length===13) { %> <%
-            time=visit.time.slice(2) %> <% } else { %> <%
-            time=visit.time.slice(-9) %> <% } %>
-            <p class="card-title"><%= time %></p>
+            <p class="card-title"><%= visit.time.substring(2) %></p>
             <p class="card-title"><%= visit.date %></p>
             <p class="card-title"><%= visit.chimist %></p>
             <p class="card-title"><%= visit.cost %></p>
