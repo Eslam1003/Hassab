@@ -73,8 +73,9 @@ article {
   display: grid !important;
   grid-template-columns: 300px 1fr 1fr 1fr 1fr 1fr 1fr !important;
   gap: 7px !important;
-  padding: 5px 10px 5px 0px !important;
+  padding: 7px 12px 7px 0px !important;
   position: relative;
+  font-size: large;
 }
 .card:hover {
   background-color: #f0f6fd;
@@ -82,7 +83,7 @@ article {
 }
 .card-title {
   margin-bottom: 0px !important;
-  font-size: 18px !important;
+  font-size: 20px !important;
 }
 
 .count {
@@ -131,9 +132,12 @@ article {
     width: 100% !important;
   }
   .card-body {
+    display: grid !important;
     grid-template-columns: 300px 1fr 1fr 1fr 1fr 1fr 1fr !important;
     gap: 7px !important;
-    padding: 5px !important;
+    padding: 10px 15px 10px 0px !important;
+    position: relative;
+    font-size: large;
   }
   .card-title {
     margin-bottom: 0px !important;
