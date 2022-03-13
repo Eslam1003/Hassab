@@ -1,23 +1,23 @@
 const { format } = require('date-fns');
 const Chimist = require('../models/chimist');
 const Visit = require('./../models/visit');
-
+let chimistId = '6225dba767aeee2062f0d706';
 let chimistName = [
-  // 'عمر يوسف',
-  // 'السيد احمد',
-  // 'السيد عطية',
-  // 'محمود السيد',
-  // 'علاء عبد النعيم',
-  // 'محمد يوسف',
-  // 'إبراهيم أحمد',
-  // 'بيتر وليم',
-  // 'مصطفي فوزي',
-  // 'كيرلس جاب الله',
-  // 'فادي صبري',
-  // 'عبده محمود',
-  // 'نجلاء',
-  // 'نسمة',
-  // '-_-',
+  'عمر يوسف',
+  'السيد احمد',
+  'السيد عطية',
+  'محمود السيد',
+  'علاء عبد النعيم',
+  'محمد يوسف',
+  'إبراهيم أحمد',
+  'بيتر وليم',
+  'مصطفي فوزي',
+  'كيرلس جاب الله',
+  'فادي صبري',
+  'عبده محمود',
+  'نجلاء',
+  'نسمة',
+  '-_-',
 ];
 let sortchimistbyarea = [];
 let spred = [];
@@ -120,7 +120,7 @@ let newVisit = (req, res, next) => {
 // chimist
 
 let chimistNote = async (req, res, next) => {
-  let chimist = await Chimist.findById({ _id: '6225dba767aeee2062f0d706' });
+  let chimist = await Chimist.findById({ _id: chimistId });
   res.render('visits/chimist', { chimist: chimist.chimist });
 };
 // end
@@ -128,7 +128,7 @@ let chimistNote = async (req, res, next) => {
 
 let chimistsave = async (req, res) => {
   let newChimist = req.body.chimist;
-  let chimists = await Chimist.findById({ _id: '6225dba767aeee2062f0d706' });
+  let chimists = await Chimist.findById({ _id: chimistId });
   let newList = [];
   if (chimists.chimist.includes(newChimist)) {
     let filtered = chimists.chimist.filter((chimist) => {
@@ -141,7 +141,7 @@ let chimistsave = async (req, res) => {
   chimistName = [...newList];
 
   await Chimist.findByIdAndUpdate(
-    { _id: '6225dba767aeee2062f0d706' },
+    { _id: chimistId },
     {
       chimist: newList,
     }

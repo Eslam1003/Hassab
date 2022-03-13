@@ -13,15 +13,15 @@
   background-color: white;
   width: 95%;
 }
-/* .container::after {
+.containe::after {
   content: '';
   position: absolute;
-  height: 100%;
+  height: 81%;
   width: 1px;
   right: 130px;
-  top: 0px;
+  top: 160px;
   background-color: black;
-} */
+}
 .visit-row {
   box-sizing: border-box;
   display: flex;
@@ -47,6 +47,7 @@ p {
   text-align: start;
   margin: 10px;
   font-size: large;
+  font-weight: bold;
 }
 .logo {
   width: 90%;

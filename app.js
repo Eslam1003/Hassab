@@ -5,6 +5,37 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
+const { spawn } = require('child_process');
+const cron = require('node-cron');
+
+// mongodump --db=visits --archive=C:\Users\Eslam\Desktop\visits.gzip --gzip
+// mongorestore --db=visits --archive=C:\Users\Eslam\Desktop\visit.gzip --gzip
+// cron.schedule('* * * * *', () => backupmongoDB());
+
+// const DB_Name = 'visit';
+// const archive = `C:/Users/Eslam/Desktop/visit.gzip`;
+
+// function backupmongoDB(params) {
+//   const child = spawn('mongodump', [
+//     `--db=${DB_Name}`,
+//     `--archive=${archive}`,
+//     `--gzip`,
+//   ]);
+//   child.stdout.on('data', (data) => {
+//     console.log('stdout:/n', data);
+//   });
+//   child.stderr.on('data', (data) => {
+//     console.log('stderr:/n', Buffer.from(data).toString());
+//   });
+//   child.on('error', (error) => {
+//     console.log(error);
+//   });
+//   child.on('exit', (code, signal) => {
+//     if (code) console.log('process exit with code:', code);
+//     else if (signal) console.log('process kild with signal:', signal);
+//     else console.log('backup is sucsessful');
+//   });
+// }
 
 mongoose
   .connect(
